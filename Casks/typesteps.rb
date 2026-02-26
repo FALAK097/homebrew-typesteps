@@ -1,9 +1,9 @@
 cask "typesteps" do
-  version "1.0.1"
+  version "1.0.2"
 
   # We will need to manually update this SHA after the first run.
   # For now I will put a placeholder
-  sha256 "3725eab27396f06e8c4aafbe18624ba9295145c6e154d7a3588ef3ded6356820"
+  sha256 "dc83bd66058003659533b4526c06bd931d3d427fc9dcfd0a59c1be5dd88d5f0d"
 
   url "https://github.com/FALAK097/typesteps/releases/download/v#{version}/typesteps.zip"
 
