@@ -10,26 +10,23 @@ cask "typesteps" do
 
   depends_on arch: :arm64
 
-  installation do
-    # Extract zip
+  preflight do
+    # Extract zip to staged path
     system_command "unzip",
-                   args: ["-q", "-o", staged_path/"typesteps.zip", "-d", staged_path],
+                   args: ["-q", "-o", "#{staged_path}/typesteps.zip", "-d", "#{staged_path}"],
                    sudo: false
-    
-    # Copy app to Applications
-    system_command "cp",
-                   args: ["-r", staged_path/"typesteps.app", "/Applications/typesteps.app"],
-                   sudo: true
   end
 
-  auto_updates false
+  app "typesteps.app"
 
   postflight do
     # Remove quarantine attribute
     system_command "xattr",
-                   args: ["-dr", "com.apple.quarantine", "/Applications/typesteps.app"],
+                   args: ["-dr", "com.apple.quarantine", "#{appdir}/typesteps.app"],
                    sudo: false
   end
+
+  auto_updates false
 
   zap trash: [
     "~/Library/Application Support/typesteps",
