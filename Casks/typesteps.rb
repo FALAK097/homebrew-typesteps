@@ -1,8 +1,5 @@
 cask "typesteps" do
   version "1.0.3"
-
-  # We will need to manually update this SHA after the first run.
-  # For now I will put a placeholder
   sha256 "be29368407ab4ac960244c652e385cbd90a6522110a1691a2f963603c8471595"
 
   url "https://github.com/FALAK097/typesteps/releases/download/v#{version}/typesteps.zip"
@@ -11,15 +8,23 @@ cask "typesteps" do
   desc "A privacy-focused passive macOS keystroke counter"
   homepage "https://github.com/FALAK097/typesteps"
 
-  app "typesteps.app"
+  depends_on arch: :arm64
 
-  auto_updates false
+  extract: :no_op
 
   postflight do
+    # Manually extract and install to /Applications
+    system_command "unzip",
+                   args: ["-q", "-o", "#{staged_path}/typesteps.zip", "-d", "/Applications"],
+                   sudo: false
+    
+    # Remove quarantine attribute
     system_command "xattr",
-                   args: ["-dr", "com.apple.quarantine", "#{appdir}/typesteps.app"],
+                   args: ["-dr", "com.apple.quarantine", "/Applications/typesteps.app"],
                    sudo: false
   end
+
+  auto_updates false
 
   zap trash: [
     "~/Library/Application Support/typesteps",
