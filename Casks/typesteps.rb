@@ -1,6 +1,6 @@
 cask "typesteps" do
-  version "1.0.3"
-  sha256 "be29368407ab4ac960244c652e385cbd90a6522110a1691a2f963603c8471595"
+  version "1.0.4"
+  sha256 "0b2ffa6430d2b611841afb7f1704d32e6009576aaa88fee3372657137b1abe3f"
 
   url "https://github.com/FALAK097/typesteps/releases/download/v#{version}/typesteps.zip"
 
