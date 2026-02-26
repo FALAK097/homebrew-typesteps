@@ -10,8 +10,6 @@ cask "typesteps" do
 
   depends_on arch: :arm64
 
-  extract: :no_op
-
   postflight do
     # Manually extract and install to /Applications
     system_command "unzip",
