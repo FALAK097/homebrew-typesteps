@@ -17,7 +17,7 @@ cask "typesteps" do
 
   postflight do
     system_command "xattr",
-                   args: ["-cr", "#{appdir}/typesteps.app"],
+                   args: ["-dr", "com.apple.quarantine", "#{appdir}/typesteps.app"],
                    sudo: false
   end
 
